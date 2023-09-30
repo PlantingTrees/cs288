@@ -1,3 +1,3 @@
 #!/bin/bash
 
-so
+echo running
