@@ -31,7 +31,7 @@ if [ "$size_result_array" -eq 0 ]; then
 else
     
     # Sort the dates in the result_array since thgere are multiple delimiters we translate to one delimter and traslate back
-    sorted_array=($(printf '%s\n' "${result_array[@]}" | tr '/' '-' | tr '/' '.'  |sort -t'-' -k3,3n -k1,1n -k2,2n))
+    sorted_array=($(printf '%s\n' "${result_array[@]}" | tr '/.-'  |sort -t| tr '/.-'  ))
 
     # Restore the original format and print the sorted dates
     for item in "${sorted_array[@]}"; do
