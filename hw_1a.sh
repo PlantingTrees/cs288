@@ -18,18 +18,16 @@ delimiter_capture="([/.-])"
 for date in ${date_array[@]};do
     if [[ $date =~ $delimiter_capture ]];then
         captured_delimiter=${BASH_REMATCH[1]}
-        new_delimiter=""
+        new_delimiter="/"
         stripped_date="${date//$captured_delimiter/$new_delimiter}"
-        #store the stripped_date into associatice array along with the value as original date
         date_array_compressed["$stripped_date"]=$date
     fi
 
 done
 
-sorted_date_compressed=($(echo "${!date_array_compressed[@]}" |  tr ' ' '\n' | sort))
-#now we can use this sorted to arrange the main arrray 
+sorted_date_compressed=($(echo "${!date_array_compressed[@]}" | tr ' ' '\n' | tr -d '\r' | sort -t '/' -k 3,3n -k 1,1n -k 2,2n))
+
 
 for date in "${sorted_date_compressed[@]}";do
-    date_arranged=${date_array_compressed["$date"]}
-    echo "$date_arranged"
+    echo "${date_array_compressed[$date]}"
 done
