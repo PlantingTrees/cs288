@@ -25,6 +25,7 @@
         },
         {
             "type": "cppbuild",
+<<<<<<< HEAD
             "label": "C/C++: gcc-11 build active file",
             "command": "/usr/bin/gcc-11",
             "args": [
@@ -49,6 +50,13 @@
             "command": "/usr/bin/gcc-12",
             "args": [
                 "-fdiagnostics-color=always",
+=======
+            "label": "C/C++: clang build active file",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
+>>>>>>> 89ec391ca2d4654425f19b1af754cf83c7e8cf11
                 "-g",
                 "${file}",
                 "-o",

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "version": "0.2.0",
     "configurations": [
         
@@ -31,6 +32,11 @@
         // },
         {
             "name": "C/C++: gcc-12 build and debug active file",
+=======
+    "configurations": [
+        {
+            "name": "C/C++: clang build and debug active file",
+>>>>>>> 89ec391ca2d4654425f19b1af754cf83c7e8cf11
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
@@ -39,6 +45,7 @@
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
+<<<<<<< HEAD
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -57,3 +64,11 @@
         }
     ]
 }
+=======
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: clang build active file"
+        }
+    ],
+    "version": "2.0.0"
+}
+>>>>>>> 89ec391ca2d4654425f19b1af754cf83c7e8cf11
