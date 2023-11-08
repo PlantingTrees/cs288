@@ -5,8 +5,8 @@ int main(){
     int Size;
     float **inputArray;
     float **bufferArray;
-    int numFloat;
-    numFloat=1;
+    float **negativeArray;
+    int Counter[16];
     //read file 
     FILE *fileHandler= fopen("./input", "r");
     if(fileHandler == NULL){
@@ -14,12 +14,16 @@ int main(){
         exit(EXIT_FAILURE);
     }
     //read first value to size
-    if((fscanf(fileHandler, "%d", &Size))!= 1){
+    if((fscanf(fileHandler, "%d", &Size))!= EOF){
         //allocate input & buffer arrays
         inputArray=(float **) malloc(Size * sizeof(float *));
         if(inputArray == NULL){
             perror("Cannot allocate space to inputArray");
             exit(1);
+        }
+        negativeArray=(float **) malloc(Size * sizeof(float *));
+        if(negativeArray==NULL){
+            perror("cannot allocate array for negative");
         }
         bufferArray=(float**) malloc(Size * sizeof(float *));
         if(bufferArray == NULL){
@@ -29,12 +33,25 @@ int main(){
     }
     //get the values from input.txt into inputArray
     for(int i=0; i< Size; i++){
-        inputArray[i]= (float *)malloc(sizeof(float) * numFloat);
-        if(inputArray[i] == NULL){
-            perror("Cannot make space for input float values");
-            exit(EXIT_FAILURE);
+        inputArray[i]= (float *) malloc(sizeof(float));
+        negativeArray[i]=(float *) malloc(sizeof(float));
+        float temp;
+        fscanf(fileHandler, "%f", &temp);
+        if(temp < 0){
+            *negativeArray[i]=temp; 
+        }else{
+            *inputArray[i]=temp;
         }
     }
+     for(int i=0; i< Size; i++){
+        printf("%f\n", *inputArray[i]);
+    }
+    for(int i=0; i< Size; i++){
+        printf("%d\n", (unsigned int) *inputArray[i] & 0b11);
+    }
+    
+    
+
     //fclose(fileHandler);
     return 0;
 }
