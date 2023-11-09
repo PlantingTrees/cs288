@@ -7,6 +7,7 @@ int main(){
     float **bufferArray;
     float **negativeArray;
     int Counter[16];
+    int Offset[16];
     //read file 
     FILE *fileHandler= fopen("./input", "r");
     if(fileHandler == NULL){
@@ -43,15 +44,36 @@ int main(){
             *inputArray[i]=temp;
         }
     }
-     for(int i=0; i< Size; i++){
-        printf("%f\n", *inputArray[i]);
+    //convert float point to unsigned in, sort it and swap back to floats
+    for(int i=0; i<16; i++){
+        Counter[i]=0;
     }
-    for(int i=0; i< Size; i++){
-        printf("%d\n", (unsigned int) *inputArray[i] & 0b11);
+    for(int value=0; value<Size; value++){
+        unsigned int fp;
+        fp=(unsigned int ) (*inputArray[value]);
+        //get the lsd using mask
+        unsigned int hex_mask= 0xf;
+        unsigned int result = (fp & hex_mask);
+        Counter[result]+=1;
+        
     }
     
-    
+    //calculate the offsets 
+    for(int i=0; i<16; i++){
+        if(i==0){
+            Offset[i]=0;
+        }
+        else{
+            Offset[i]=Offset[i-1] + Counter[i-1];
+        }
+    }
 
+    //put it in bufferArray
+    for(int i=0; i< Size; i++){
+        //cver back to normal float
+        
+    }
     //fclose(fileHandler);
     return 0;
+
 }
